@@ -22,7 +22,7 @@ jobs:
 
     # Setup Terraform
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
 
     # Initialize and apply Terraform for VPC
     - name: RUN Backend
