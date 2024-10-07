@@ -1,0 +1,41 @@
+name: Deploy Infrastructure
+
+on:
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  # VPC Stage
+  deploy_vpc:
+    runs-on: ubuntu-latest
+    steps:
+    # Checkout the repository
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Configure AWS Credentials
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    # Setup Terraform
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+
+    # Initialize and apply Terraform for VPC
+    - name: RUN Backend
+      working-directory: ./backend
+      id: apply
+      run: |
+        terraform init 
+        terraform apply -var-file=../env.json -auto-approve
+
+    - name: Check for Changes and Push
+      if: steps.apply.outcome == 'success'
+      run: |
+        # Check if there are changes to commit
+        git config --local user.name "github-actions[bot]"
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git diff --exit-code || (git add . && git commit -m "Terraform: Applied changes from backend job" && git push origin HEAD:${{ github.ref }})
