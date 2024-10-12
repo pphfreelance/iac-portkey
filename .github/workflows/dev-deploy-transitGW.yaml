@@ -1,0 +1,32 @@
+name: Deploy Dev Transit GW 
+
+on:
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  # VPC Stage
+  deploy_vpc:
+    runs-on: ubuntu-latest
+    steps:
+    # Checkout the repository
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Configure AWS Credentials
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    # Setup Terraform
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+
+    # Initialize and apply Terraform for Transit Gateway
+    - name: Deploy Transit Gateway
+      working-directory: ./dev/transit_gw  
+      run: |
+        terraform init --backend=../../backend.json
+        terraform apply -var-file=../env.json -auto-approve
