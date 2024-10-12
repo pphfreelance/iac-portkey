@@ -24,6 +24,7 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
 
+
     # Initialize and apply Terraform for VPC
     - name: RUN Backend
       working-directory: ./backend
@@ -32,10 +33,7 @@ jobs:
         terraform init 
         terraform apply -var-file=../env.json -auto-approve
 
-    - name: Check for Changes and Push
-      if: steps.apply.outcome == 'success'
-      run: |
-        # Check if there are changes to commit
-        git config --local user.name "github-actions[bot]"
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git diff --exit-code || (git add . && git commit -m "Terraform: Applied changes from backend job" && git push origin HEAD:${{ github.ref }})
+    - name: Commit & Push changes
+      uses: actions-js/push@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
