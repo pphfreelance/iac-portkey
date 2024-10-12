@@ -3,6 +3,6 @@
 "bucket"         : "pph-t-terraform-state",
 "dynamodb_table" : "pph-t-terraform-state-lock",
 "profile"        : "",
-"role_arn"       : "",
+"role_arn"       : "arn:aws:iam::926233248796:role/Admin_Role",
 "encrypt"        : "true"
 }
