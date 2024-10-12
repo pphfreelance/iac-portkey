@@ -3,7 +3,7 @@ terraform {
     key = "dev/vpc.tfstate"
     bucket = "${local.backend_name}-state"
     assume_role = {
-      role_arn = "${var.role_arn}"
+      role_arn = "arn:aws:iam::926233248796:role/Admin_Role",
     }
   }
 }
