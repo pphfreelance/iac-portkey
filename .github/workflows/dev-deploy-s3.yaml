@@ -28,5 +28,5 @@ jobs:
     - name: Deploy S3 Logs
       working-directory: ./dev/s3-logs  
       run: |
-        terraform init --backend=../../backend.json
+        terraform init --backend-config=../../backend.json
         terraform apply -var-file=../env.json -auto-approve

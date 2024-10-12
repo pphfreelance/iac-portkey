@@ -28,5 +28,5 @@ jobs:
     - name: Deploy EKS
       working-directory: ./dev/eks  
       run: |
-        terraform init --backend=../../backend.json
+        terraform init --backend-config=../../backend.json
         terraform apply -var-file=../env.json -auto-approve
