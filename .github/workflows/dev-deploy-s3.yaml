@@ -22,7 +22,7 @@ jobs:
 
     # Setup Terraform
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v3
+      uses: hashicorp/setup-terraform@v2
 
     # Initialize and apply Terraform for s3 log
     - name: Deploy S3 Logs
