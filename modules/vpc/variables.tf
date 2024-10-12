@@ -31,6 +31,3 @@ variable "enable_vpn_gw" {
 variable "addon_tags" {
   type = map(string)
 }
-variable "role_arn" {
-  type = any
-}
