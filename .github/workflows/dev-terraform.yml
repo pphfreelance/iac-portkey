@@ -22,7 +22,7 @@ jobs:
 
     # Setup Terraform
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v1
 
     # Initialize and apply Terraform for VPC
     - name: Deploy VPC
@@ -49,7 +49,7 @@ jobs:
 
     # Setup Terraform
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v1
 
     # Initialize and apply Terraform for Transit Gateway
     - name: Deploy Transit Gateway
@@ -76,7 +76,7 @@ jobs:
 
     # Setup Terraform
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v1
 
     # Initialize and apply Terraform for S3 Logs
     - name: Deploy S3 Logs
@@ -103,7 +103,7 @@ jobs:
 
     # Setup Terraform
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v1
 
     # Initialize and apply Terraform for RDS
     - name: Deploy RDS
@@ -130,7 +130,7 @@ jobs:
 
     # Setup Terraform
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v1
 
     # Initialize and apply Terraform for EKS
     - name: Deploy EKS
@@ -157,7 +157,7 @@ jobs:
 
     # Setup Terraform
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v1
 
     # Initialize and apply Terraform for ElastiCache
     - name: Deploy ElastiCache
